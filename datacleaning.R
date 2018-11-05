@@ -46,8 +46,27 @@ data$education <- ordered(data$education, levels = c("Hauptschulabschluss", "Mit
 
 zutreffen <- c("Trifft gar nicht zu", "Trifft nicht zu", "Trifft eher nicht zu", 
                "Trifft eher zu", "Trifft zu", "Trifft voll zu")
-factor(data$b5_1, levels = zutreffen)
+data$b5_bug <- as.numeric(ordered(data$b5_1, levels = zutreffen))
 
-data$b5_1[2]==test
+summary(data)
 
-summary(data[,1:15])
+
+## Variablen berechnen -----
+
+
+data %>% mutate(b5 = b5_1 + b5_2 / 2)
+
+
+library(psych)
+
+key.list <- list(b5 = c("age"))
+
+scales <- scoreItems(key.list, data, missing = T)
+
+c(data, scales$scores)
+
+
+data %>% filter(age > 50)
+data %>% select(age)
+data %>% arrange(desc(age))
+data %>% group_by(gender) %>% summarise(age = mean(age))
