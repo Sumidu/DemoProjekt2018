@@ -17,6 +17,12 @@ load_surveymonkey_csv <- function(filename) {
   )
   col_names <- paste(names(header), names(raw))
   names(raw) <- col_names
+  
+  remove_nbsp <- function(text){
+    gsub("\u00A0", " ", text, fixed = TRUE)
+  }
+  raw <- raw %>% mutate_if(is.character,remove_nbsp)
+  
   raw
 }
 
