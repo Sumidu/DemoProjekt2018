@@ -64,3 +64,19 @@ add_survey_response_duration <- function(df){
            modifieddate = mdy_hms(newmodified)) %>% 
     mutate(survey_duration = difftime(modifieddate, createdate, units = "secs"))
 }
+
+
+
+generate_codebook <- function(df, filename) {
+  text <- names(df)
+  variable <- paste0("VAR",1:dim(df)[2])
+  codebook <- tibble(variable, text)
+  write_delim(codebook, filename, delim = ";")
+  
+}
+
+read_codebook <- function(filename){
+  read_delim(filename, delim = ";")
+}
+
+
