@@ -1,3 +1,5 @@
+require(lubridate)
+require(tidyverse)
 
 #' Loads surveymonkey generated csv files that contain 2 line headers
 #'
@@ -18,9 +20,47 @@ load_surveymonkey_csv <- function(filename) {
   raw
 }
 
-name_variables <- function(data, columnvector) {
-  oldnames <- names(data)
+
+#' Rename all variables by a character vector, but keep unnamed variables the same
+#'
+#' @param df The dataframe to rename
+#' @param columnvector A vector of names 
+#'
+#' @return A dataframe with renames columns
+#' @export
+#'
+#' @examples
+name_variables <- function(df, columnvector) {
+  #oldnames <- names(df)
   l <- length(columnvector)
-  names(data)[1:l] <- columnvector
-  data
+  names(df)[1:l] <- columnvector
+  df
+}
+
+
+
+#' Add a survey response duration to surveymonkey data-frames.
+#' Dataframes must contain a date_created and date_modified column.
+#'
+#' @param df Surveymonkey dataframe
+#'
+#' @return A dataframe with new column for survey duration
+#' @export
+#'
+#' @examples
+add_survey_response_duration <- function(df){
+  if (!"date_created" %in% names(df)) {
+    stop("Error: Dataframe must contain a column named `date_created`", call. = F)  
+  }
+  if (!"date_modified" %in% names(df)) {
+    stop("Error: Dataframe must contain a column named `date_modified`", call. = F)  
+  }
+  
+  
+  df %>% mutate(
+    newcreate   = str_replace_all(date_created, pattern = "/", replacement = "-"),
+    newmodified = str_replace_all(date_modified, pattern = "/", replacement = "-")) %>%  
+    mutate(createdate   = mdy_hms(newcreate),
+           modifieddate = mdy_hms(newmodified)) %>% 
+    mutate(survey_duration = difftime(modifieddate, createdate, units = "secs"))
 }

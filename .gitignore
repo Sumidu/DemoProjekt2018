@@ -36,5 +36,8 @@ vignettes/*.pdf
 rsconnect/
 .Rproj.user
 
+# Keine Apple Thumbnails hochladen
+.DS_Store
+
 # Keine Daten hochladen
 data
