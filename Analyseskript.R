@@ -1,12 +1,11 @@
 # Analyseskript
 
+#### Bibliotheken laden ----
 
-# Bibliotheken laden
-library(tidyverse)
-source("surveymonkey.R")
+while(FALSE){
+  source("surveymonkey.R")
+  source("install_libraries.R")
+}
 
 
 
-#Datei laden
-filename <- "data/robotik.csv"
-raw <- load_surveymonkey_csv(filename) 

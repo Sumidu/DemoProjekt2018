@@ -1,13 +1,24 @@
-# Analyse Skript 
+#### Analyse Skript 
 
-# Bibliotheken laden
+#### Bibliotheken laden
 
-library(tidyverse)
+install.packages("tidyverse")
+install.packages("lubridate")
+install.packages("psych")
+install.packages("esquisse")
+install.packages("ggthemes")
+install.packages("ggplot2")
+
+install.packages("devtools")
+library(devtools)
+devtools::install_github("HCIC/r-tools")
+
 source("surveymonkey.R")
 
 #### Datei laden ----
 filename <- "data/robotik.csv"
 raw <- load_surveymonkey_csv(filename)
+# WICHTIG: Ihre csv-Datei muss unbedingt in den Ordner data, da sie sonst öffentlich wird.
 
 #### Daten cleanen----
 
@@ -22,14 +33,17 @@ raw.short <- raw[,c(-1:-8)]
 # usw...
 ## diese Variante ist sehr umständlich.
 
-# Variante 2: Eine eigene Datei mit den Variablennamen erzeugen:
-generate_codebook(raw.short, "data/codebook.csv")
+## Variante 2: Eine eigene Datei mit den Variablennamen erzeugen:
+generate_codebook(raw.short, "codebook.csv")
 # Dann codebook.csv in Excel öffnen, die Vairablennamen per Hand umbenennen, 
 # die Datei als codebook_final.csv abspeichern und hier wieder einlesen:
 codebook <- read_codebook("codebook_final.csv")
 
 #neue Namen auf die Daten anwenden:
 names(raw.short) <- codebook$variable
+
+### Schritt 3: Variablen den richtigen Typen zuordnen
+
 
 # Gender zu kategorialer Variable machen:
 raw.short$gender <- as.factor(raw.short$gender)
@@ -58,8 +72,6 @@ raw.short$kut5 <- ordered(raw.short$kut5, levels = scale.zustimmung)
 raw.short$kut6 <- ordered(raw.short$kut6, levels = scale.zustimmung)
 raw.short$kut7 <- ordered(raw.short$kut7, levels = scale.zustimmung)
 raw.short$kut8 <- ordered(raw.short$kut8, levels = scale.zustimmung)
-
-# Hausaufgabe ab hier:
 
 raw.short$diffpref1 <- ordered(raw.short$diffpref1, levels = scale.zustimmung)
 raw.short$diffpref2 <- ordered(raw.short$diffpref2, levels = scale.zustimmung)
@@ -100,49 +112,37 @@ scale.gerne <-c("Auf keinen Fall",
                 "gerne", 
                 "Sehr gerne")
 
-change_scale <- function(x, scale){
-  ordered(x, levels=scale)
-}
+raw.short$robot_bed <- ordered(raw.short$robot_bed, levels = scale.gerne)
+raw.short$robot_food <- ordered(raw.short$robot_food, levels = scale.gerne)
+raw.short$robot_med <- ordered(raw.short$robot_med, levels = scale.gerne)
+raw.short$robot_bodyc <- ordered(raw.short$robot_bodyc, levels = scale.gerne)
+raw.short$robot_hair <- ordered(raw.short$robot_hair, levels = scale.gerne)
+raw.short$robot_massage <- ordered(raw.short$robot_massage, levels = scale.gerne)
+raw.short$robot_bath <- ordered(raw.short$robot_bath, levels = scale.gerne)
+raw.short$robot_wash <- ordered(raw.short$robot_wash, levels = scale.gerne)
+raw.short$robot_toilet <- ordered(raw.short$robot_toilet, levels = scale.gerne)
+raw.short$robot_facec <- ordered(raw.short$robot_facec, levels = scale.gerne)
+raw.short$robot_haircut <- ordered(raw.short$robot_haircut, levels = scale.gerne)
 
-change_gerne_scale <- function(x) {
-  change_scale(x, scale.gerne)
-}
-
-change_trifftzu_scale <- function(x){
-  change_scale(x, scale.zutreffen)
-}
-
-raw.short <- raw.short %>% mutate_at(vars(starts_with("robot")), change_gerne_scale) %>% 
-  mutate_at(vars(starts_with("human")), change_gerne_scale)
-
-#raw.short$robot_bed <- ordered(raw.short$robot_bed, levels = scale.gerne)
-#raw.short$robot_food <- ordered(raw.short$robot_food, levels = scale.gerne)
-#raw.short$robot_med <- ordered(raw.short$robot_med, levels = scale.gerne)
-#raw.short$robot_bodyc <- ordered(raw.short$robot_bodyc, levels = scale.gerne)
-#raw.short$robot_hair <- ordered(raw.short$robot_hair, levels = scale.gerne)
-#raw.short$robot_massage <- ordered(raw.short$robot_massage, levels = scale.gerne)
-#raw.short$robot_bath <- ordered(raw.short$robot_bath, levels = scale.gerne)
-#raw.short$robot_wash <- ordered(raw.short$robot_wash, levels = scale.gerne)
-#raw.short$robot_toilet <- ordered(raw.short$robot_toilet, levels = scale.gerne)
-#raw.short$robot_facec <- ordered(raw.short$robot_facec, levels = scale.gerne)
-#raw.short$robot_haircut <- ordered(raw.short$robot_haircut, levels = scale.gerne)
-
-# raw.short$human_bed <- ordered(raw.short$human_bed, levels = scale.gerne)
-# raw.short$human_food <- ordered(raw.short$human_food, levels = scale.gerne)
-# raw.short$human_med <- ordered(raw.short$human_med, levels = scale.gerne)
-# raw.short$human_bodyc <- ordered(raw.short$human_bodyc, levels = scale.gerne)
-# raw.short$human_hair <- ordered(raw.short$human_hair, levels = scale.gerne)
-# raw.short$human_massage <- ordered(raw.short$human_massage, levels = scale.gerne)
-# raw.short$human_bath <- ordered(raw.short$human_bath, levels = scale.gerne)
-# raw.short$human_wash <- ordered(raw.short$human_wash, levels = scale.gerne)
-# raw.short$human_toilet <- ordered(raw.short$human_toilet, levels = scale.gerne)
-# raw.short$human_facec <- ordered(raw.short$human_facec, levels = scale.gerne)
-# raw.short$human_haircut <- ordered(raw.short$human_haircut, levels = scale.gerne)
+raw.short$human_bed <- ordered(raw.short$human_bed, levels = scale.gerne)
+raw.short$human_food <- ordered(raw.short$human_food, levels = scale.gerne)
+raw.short$human_med <- ordered(raw.short$human_med, levels = scale.gerne)
+raw.short$human_bodyc <- ordered(raw.short$human_bodyc, levels = scale.gerne)
+raw.short$human_hair <- ordered(raw.short$human_hair, levels = scale.gerne)
+raw.short$human_massage <- ordered(raw.short$human_massage, levels = scale.gerne)
+raw.short$human_bath <- ordered(raw.short$human_bath, levels = scale.gerne)
+raw.short$human_wash <- ordered(raw.short$human_wash, levels = scale.gerne)
+raw.short$human_toilet <- ordered(raw.short$human_toilet, levels = scale.gerne)
+raw.short$human_facec <- ordered(raw.short$human_facec, levels = scale.gerne)
+raw.short$human_haircut <- ordered(raw.short$human_haircut, levels = scale.gerne)
 
 raw.short$trost_robot <- ordered(raw.short$trost_robot, levels = scale.zustimmung2)
 raw.short$trost_human <- ordered(raw.short$trost_human, levels = scale.zustimmung2)
 
-#### Skala berechnen
+#### Schritt 4: Skalen berechnen
+
+library(psych)
+
 schluesselliste <- list(KUT= c("kut1", "-kut2", "kut3", "kut4", "-kut5", "kut6", "-kut7", "-kut8"),
                         DIFFPREF = c("diffpref1", "diffpref2", "diffpref3", 
                                      "diffpref4", "-diffpref5", "-diffpref6"),
@@ -173,4 +173,7 @@ data <- data %>%
   select(-starts_with("robot_", ignore.case = F)) %>%
   select(-starts_with("human_", ignore.case = F)) %>% 
   select(-starts_with("trost_", ignore.case = F))
+
+saveRDS(data, "data/robotik2.rds")
+# WICHTIG: Ihre rds-Datei muss unbedingt in den Ordner data, da sie sonst öffentlich wird.
 

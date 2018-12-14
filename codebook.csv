@@ -1,0 +1,58 @@
+variable;text
+VAR1;Wie alt sind Sie? Open-Ended Response
+VAR2;Bitte geben Sie Ihr Geschlecht an. Response
+VAR3;"Bitte geben Sie an, wie sehr sie folgenden Fragen zustimmen. ""Ich kann ziemlich viele der technischen Probleme, mit denen ich konfrontiert werde, allein lösen."""
+VAR4;"X13 ""Technische Geräte sind oft undurchschaubar und schwer zu beherrschen."""
+VAR5;"X14 ""Es macht mir richtig Spaß, ein technisches Problem zu knacken."""
+VAR6;"X15 ""Weil ich mit bisherigen technischen Problemen gut zurecht gekommen bin, blicke ich auch künftigen technischen Problemen optimistisch entgegen."""
+VAR7;"X16 ""Ich fühle mich technischen Geräten gegenüber so hilflos, dass ich die Finger von ihnen lasse."""
+VAR8;"X17 ""Auch wenn Widerstände auftreten, bearbeite ich ein technisches Problem weiter."""
+VAR9;"X18 ""Wenn ich ein technisches Problem löse, so geschieht es meistens durch Glück."""
+VAR10;"X19 ""Die meisten technischen Probleme sind so kompliziert, dass es wenig Sinn hat, sich mit ihnen auseinander zu setzen."""
+VAR11;Bitte geben Sie Ihren Berufstand an. Response_1
+VAR12;X21 In welchem Beruf arbeiten Sie?
+VAR13;"Bitte geben Sie an, wie sehr sie folgenden Aussagen zustimmen. ""Schwierige Probleme reizen mich mehr als einfache."""
+VAR14;"X23 ""Ich suche Aufgaben, die meine Fähigkeiten herausfordern."""
+VAR15;"X24 ""Gerade schwierige Aufgaben fordern mich heraus."""
+VAR16;"X25 ""Ich mag es eine schwere Nuss knacken zu müssen."""
+VAR17;"X26 ""Ich denke hauptsächlich, wenn ich denken muss."""
+VAR18;"X27 ""Mir reicht es aus die richtige Antwort zu kennen, auch ohne die Gründe dahinter zu kennen."""
+VAR19;"X28 ""Ich habe viel Erfahrung im Umgang mit neuer Technik."""
+VAR20;"X29 ""Ich nutze gerne immer die neuste Technik."""
+VAR21;"X30 ""Ich vertraue auf Technik."""
+VAR22;"X31 ""Technik funktioniert meistens gut."""
+VAR23;"X32 ""Ich bin besorgt, ob mit Daten in unserer Gesellschaft vorsichtig umgegangen wird."""
+VAR24;"X33 ""Ich finde, mit Daten sollte vorsichtiger umgegangen werden."""
+VAR25;"X34 ""Technik stellt im Allgemeinen einen guten Datenschutz sicher."""
+VAR26;"X35 ""Datenschutz wird in Technik häufig schlecht sicher gestellt."""
+VAR27;"X36 ""Ich finde viel mehr Dinge könnten im Leben automatisiert werden."""
+VAR28;"X37 ""Ich bin gegen die Automatisierung sämtlicher Prozesse."""
+VAR29;Bitte geben Sie wie sehr folgende Aussagen auf Sie zutreffen. In meiner Familie gibt es Personen, die auf häusliche Pflege angewiesen sind.
+VAR30;X39 In meinem weiteren Umfeld gibt es Personen, die auf häusliche Pflege angewiesen sind.
+VAR31;X40 Ich habe Erfahrung in der Pflege von körperlich beeinträchtigten Menschen.
+VAR32;X41 Ich war schon einmal auf körperliche Pflege angewiesen.
+VAR33;Wie gerne würden Sie, die folgenden Aktionen von einem Roboter durchführen lassen? Hilfe beim Einsteigen ins Bett
+VAR34;X54 Nahrungsaufnahme (Füttern lassen)
+VAR35;X55 Medikamentengabe
+VAR36;X56 Körper eincremen
+VAR37;X57 Haare waschen
+VAR38;X58 Massieren
+VAR39;X59 Ein- und Ausstieg aus der Badewanne
+VAR40;X60 Waschen
+VAR41;X61 Hilfe beim Toilettengang
+VAR42;X62 Gesicht eincremen
+VAR43;X63 Haare kämmen und schneiden
+VAR44;Welche der folgenden Aktionen würden Sie von einem menschlichen Pfleger durchführen lassen? Hilfe beim Einsteigen ins Bett_1
+VAR45;X65 Nahrungsaufnahme (Füttern lassen)_1
+VAR46;X66 Medikamentengabe_1
+VAR47;X67 Körper eincremen_1
+VAR48;X68 Haare waschen_1
+VAR49;X69 Massieren_1
+VAR50;X70 Ein- und Ausstieg aus der Badewanne_1
+VAR51;X71 Waschen_1
+VAR52;X72 Hilfe beim Toilettengang_1
+VAR53;X73 Gesicht eincremen_1
+VAR54;X74 Haare kämmen und schneiden_1
+VAR55;Wie sehr stimmen sie folgenden Aussagen zu?  Die Umarmung eines menschlichen Pflegers spendet mir Trost.
+VAR56;X76 Die Umarmung eines Roboters spendet mir Trost.
+VAR57;Platz für Anmerkungen Open-Ended Response_1
