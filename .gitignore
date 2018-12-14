@@ -41,3 +41,6 @@ rsconnect/
 
 # Keine Daten hochladen
 data
+
+
+*.pdf
