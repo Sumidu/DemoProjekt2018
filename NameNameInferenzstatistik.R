@@ -100,4 +100,4 @@ data_robot %>%
        colour = "Geschlecht",
        caption = "Fehlerbalken zeigen Standardfehler des Mittelwertes") +
   NULL
-ggsave("exampleInteraction.png", width = 9, height = 6)
+ggsave("pwutilities.png", width = 297, height = 210, units = "mm")
